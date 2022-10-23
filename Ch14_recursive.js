@@ -24,7 +24,7 @@ function deepChangeObj (obj, changeObj) {
     const new_obj = {};
 
     for(const key in obj) {
-        if(changeObj[key]) {
+        if(changeObj.hasOwnProperty(key)) {
             new_obj[key] = changeObj[key];
             continue;
         }
