@@ -20,19 +20,20 @@ const changeObj = {
     action : "back",
     arn : "hahahahahaha"
 }
-
 function deepChangeObj (obj, changeObj) {
     const new_obj = {}
-    
-    for(const key in obj) {
+
+    for(const key in obj) { 
         if(changeObj.hasOwnProperty(key)) {
             new_obj[key] = changeObj[key];
             continue;
         }
-        
+
         if(typeof obj[key] === 'object') {
-            new_obj[key] = Array.isArray(obj[key]) 
-            ? obj[key].map((o) => deepChangeObj(o, changeObj))
+            new_obj[key] = Array.isArray(obj[key])
+            ? obj[key].map((o) => Object.hasOwnProperty(o) 
+                ? deepChangeObj(o, changeObj)
+                : o )
             : deepChangeObj(obj[key], changeObj)
         }
         else
