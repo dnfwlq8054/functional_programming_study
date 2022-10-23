@@ -18,7 +18,8 @@ const obj = {
 
 const changeObj = {
     action : "back",
-    arn : "hahahahahaha"
+    arn : "hahahahahaha",
+    arr : [4, 5, 6, 7]
 }
 
 function deepChangeObj (obj, changeObj) {
@@ -32,9 +33,7 @@ function deepChangeObj (obj, changeObj) {
 
         if(typeof obj[key] === 'object') {
             new_obj[key] = Array.isArray(obj[key])
-            ? obj[key].map((o) => typeof o === 'object'
-                ? deepChangeObj(o, changeObj)
-                : o )
+            ? obj[key].map((o) => typeof o === 'object' ? deepChangeObj(o, changeObj) : o )
             : deepChangeObj(obj[key], changeObj)
         }
         else
@@ -51,6 +50,6 @@ console.log(`new_obj: ${JSON.stringify(new_obj)}`)
 
 
 # ---- OutPut
-# obj: {"name":"hwan","number":10,"payload":{"action":"go","size":10,"user_id":14444},"resurce":[{"arn":"asjelfjlfjl","token_number":10}],"option":true}
-# new_obj: {"name":"hwan","number":10,"payload":{"action":"back","size":10,"user_id":14444},"resurce":{"0":{"arn":"hahahahahaha","token_number":10}},"option":true}
+# obj: {"name":"hwan","number":10,"payload":{"action":"go","size":10,"user_id":14444},"resurce":[{"arn":"asjelfjlfjl","token_number":10}],"arr":[1,2,3,4],"option":true}
+# new_obj: {"name":"hwan","number":10,"payload":{"action":"back","size":10,"user_id":14444},"resurce":[{"arn":"hahahahahaha","token_number":10}],"arr":[4,5,6,7],"option":true}
 # ----
