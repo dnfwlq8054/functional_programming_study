@@ -33,6 +33,7 @@ function deepChangeObj (obj, changeObj) {
         else
             new_obj[key] = obj[key]
     }
+    
     return new_obj
 }
 
