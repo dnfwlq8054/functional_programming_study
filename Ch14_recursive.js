@@ -31,7 +31,7 @@ function deepChangeObj (obj, changeObj) {
             continue;
         }
 
-        if(typeof obj[key] === 'object') {
+        if(obj[key] !== null && typeof obj[key] === 'object') {
             new_obj[key] = Array.isArray(obj[key])
             ? obj[key].map((o) => typeof o === 'object' ? deepChangeObj(o, changeObj) : o )
             : deepChangeObj(obj[key], changeObj)
