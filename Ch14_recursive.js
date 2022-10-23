@@ -20,6 +20,7 @@ const changeObj = {
     action : "back",
     arn : "hahahahahaha"
 }
+
 function deepChangeObj (obj, changeObj) {
     const new_obj = {}
 
@@ -31,7 +32,7 @@ function deepChangeObj (obj, changeObj) {
 
         if(typeof obj[key] === 'object') {
             new_obj[key] = Array.isArray(obj[key])
-            ? obj[key].map((o) => Object.hasOwnProperty(o) 
+            ? obj[key].map((o) => typeof o === 'object'
                 ? deepChangeObj(o, changeObj)
                 : o )
             : deepChangeObj(obj[key], changeObj)
